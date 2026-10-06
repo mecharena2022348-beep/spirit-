@@ -176,7 +176,7 @@ def seed_pre_registered_students():
 
 @app.route("/")
 def index():
-    return render_template("index.html")nt_user() else "login"))
+    return render_template("index.html") if current_user() else redirect(url_for("login"))
 
 
 @app.route("/login", methods=["GET", "POST"])
