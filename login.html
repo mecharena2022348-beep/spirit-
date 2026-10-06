@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="login-page">
+  <div class="hero-shade"></div>
+  <header class="brand">
+    <div class="flame">ϟ</div>
+    <div>
+      <div class="brand-name">SPIRIT</div>
+      <div class="brand-sub">UNIVERSITY</div>
+      <div class="brand-tag">KNOWLEDGE · CREATIVITY · BETTER TOMORROW</div>
+    </div>
+  </header>
+
+  <main class="login-card-wrap">
+    <section class="login-card">
+      <div class="portal-mark">SU</div>
+      <p class="eyebrow">CLASSROOM BOOKING PORTAL</p>
+      <h1>Welcome back</h1>
+      <p class="muted">Sign in with your university credentials to reserve classrooms and manage your schedule.</p>
+
+      <form method="post" id="loginForm">
+        <label for="identifier">University Email / Student ID / PRN / Name</label>
+        <input class="full-input" id="identifier" name="identifier" type="text" autocomplete="username" placeholder="Email, Student ID, PRN or name" required>
+
+        <label for="password">Password</label>
+        <div class="password-wrap">
+          <input class="full-input" id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required>
+          <button class="eye-btn" type="button" id="togglePassword" aria-label="Show password">◉</button>
+        </div>
+
+        <label for="role">Account type <span class="optional">(optional)</span></label>
+        <select class="full-input select-input" id="role" name="role">
+          <option value="">Auto-detect my role</option>
+          <option value="Student">Student</option>
+          <option value="Faculty">Faculty</option>
+          <option value="Admin">Admin</option>
+        </select>
+
+        <div class="login-options">
+          <label class="remember"><input type="checkbox" name="remember"><span>Remember me</span></label>
+          <a href="{{ url_for('forgot_password') }}">Forgot password?</a>
+        </div>
+
+        <button class="primary-btn" id="loginButton" type="submit"><span>Sign in securely</span><span>→</span></button>
+      </form>
+
+      <div class="security-note">
+        <span>✓</span>
+        <div><b>Secure university authentication</b><br>Passwords are protected with bcrypt hashing. No OTP is required.</div>
+      </div>
+      <div class="support-line">Don't have an account? <a href="{{ url_for('register') }}"><b>Create a student account</b></a></div>
+</section>
+  </main>
+  <footer class="login-footer">© 2026 Spirit University · Smart Campus Classroom Booking</footer>
+</div>
+{% endblock %}

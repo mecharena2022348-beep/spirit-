@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spirit University - Classroom Booking</title>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f3ee;color:#1d1d1f}
+    .page{min-height:100vh;display:flex;flex-direction:column}
+    header{padding:28px 7%;display:flex;align-items:center;gap:14px}
+    .mark{width:48px;height:48px;border-radius:14px;background:#111;color:#fff;display:grid;place-items:center;font-weight:800}
+    .brand{font-size:20px;font-weight:800;letter-spacing:2px}.sub{font-size:11px;letter-spacing:3px;color:#777}
+    main{flex:1;display:grid;place-items:center;padding:40px 20px}
+    .card{width:min(620px,100%);background:#fff;border-radius:28px;padding:48px;box-shadow:0 20px 60px #00000012}
+    .eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;color:#777}
+    h1{font-size:clamp(38px,7vw,64px);line-height:1;margin:12px 0 18px}
+    p{line-height:1.6;color:#666}
+    .btn{display:flex;justify-content:center;align-items:center;text-decoration:none;border-radius:14px;padding:16px;margin-top:14px;font-weight:700}
+    .primary{background:#111;color:#fff}.secondary{border:1px solid #ddd;color:#111}
+    .info{margin-top:24px;padding:16px;border-radius:14px;background:#f5f5f5;font-size:14px}
+    footer{text-align:center;padding:24px;color:#888;font-size:13px}
+  </style>
+</head>
+<body>
+<div class="page">
+<header>
+  <div class="mark">SU</div>
+  <div><div class="brand">SPIRIT</div><div class="sub">UNIVERSITY</div></div>
+</header>
+<main>
+<section class="card">
+  <div class="eyebrow">CLASSROOM BOOKING PORTAL</div>
+  <h1>Book a classroom.</h1>
+  <p>Reserve classrooms securely through the Spirit University smart campus booking system.</p>
+  <a class="btn primary" href="/login">Sign in →</a>
+  <a class="btn secondary" href="/register">Create student account</a>
+  <div class="info">✓ Capacity-aware booking · Maximum 5 seats per reservation</div>
+</section>
+</main>
+<footer>© 2026 Spirit University · Smart Campus Classroom Booking</footer>
+</div>
+</body>
+</html>

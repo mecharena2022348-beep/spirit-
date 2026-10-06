@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="dashboard">
+  <nav class="topbar"><div class="top-brand"><span class="top-mark">ϟ</span><span>SPIRIT UNIVERSITY · FACULTY</span></div><div class="top-actions"><span class="verified-pill">● Faculty</span><a href="{{ url_for('logout') }}">Logout</a></div></nav>
+  <main class="dash-main">
+    <section class="welcome-row"><div><p class="eyebrow">FACULTY DASHBOARD</p><h1>Classroom schedule.</h1><p class="muted">Faculty can see how classrooms are booked and make reservations for academic activities.</p></div><div class="live-badge"><span></span> Schedule view</div></section>
+    <section class="room-grid">{% for room in rooms %}<article class="room-card"><img src="{{ url_for('static', filename=room['image']) }}" alt="{{ room['name'] }}"><div class="room-info"><div class="room-title"><h3>{{ room['name'] }}</h3><span>{{ room['capacity'] }} seats</span></div><p>{{ room['room_type'] }}</p><a class="outline-btn" href="{{ url_for('dashboard') }}">Book this room</a></div></article>{% endfor %}</section>
+    <section class="bookings-section"><div class="section-head"><div><p class="eyebrow">MASTER SCHEDULE</p><h2>Classroom bookings</h2></div></div>
+      {% if bookings %}<div class="booking-list">{% for b in bookings %}<div class="booking-item"><div class="date-chip"><b>{{ b['booking_date'][8:] }}</b><small>{{ b['booking_date'][:7] }}</small></div><div class="booking-copy"><b>{{ b['room'] }}</b><span>{{ b['booking_date'] }} · {{ b['start_time'] }}–{{ b['end_time'] }} · {{ b['purpose'] }} · {{ b['enrollment_count'] }} student(s) · {{ b['current_enrollment'] }}/{{ b['room_capacity'] }} seats used · {{ b['role'] }} · {{ b['email'] }}</span></div></div>{% endfor %}</div>{% else %}<div class="empty-state">No classroom bookings yet.</div>{% endif %}
+    </section>
+  </main>
+</div>
+{% endblock %}

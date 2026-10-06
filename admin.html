@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="dashboard">
+  <nav class="topbar"><div class="top-brand"><span class="top-mark">ϟ</span><span>SPIRIT UNIVERSITY · ADMIN</span></div><div class="top-actions"><span class="verified-pill">● Admin</span><a href="{{ url_for('logout') }}">Logout</a></div></nav>
+  <main class="dash-main"><section class="welcome-row"><div><p class="eyebrow">ADMIN CONTROL CENTER</p><h1>University booking management.</h1><p class="muted">Manage users, classrooms and the master booking schedule.</p></div><div class="live-badge"><span></span> System control</div></section>
+    <section class="booking-panel"><p class="eyebrow">REGISTERED ACCOUNTS</p><h2>Users</h2><div class="booking-list">{% for u in users %}<div class="booking-item"><div class="booking-copy"><b>{{ u['email'] }}</b><span>{{ u['role'] }} · {{ u['student_id'] }} · {{ u['prn'] }}</span></div></div>{% endfor %}</div></section>
+    <section class="bookings-section"><div class="section-head"><div><p class="eyebrow">MASTER SCHEDULE</p><h2>All classroom bookings</h2></div></div>{% if bookings %}<div class="booking-list">{% for b in bookings %}<div class="booking-item"><div class="date-chip"><b>{{ b['booking_date'][8:] }}</b><small>{{ b['booking_date'][:7] }}</small></div><div class="booking-copy"><b>{{ b['room'] }}</b><span>{{ b['booking_date'] }} · {{ b['start_time'] }}–{{ b['end_time'] }} · {{ b['purpose'] }} · {{ b['enrollment_count'] }} student(s) · {{ b['current_enrollment'] }}/{{ b['room_capacity'] }} seats used · {{ b['email'] }}</span></div></div>{% endfor %}</div>{% else %}<div class="empty-state">No bookings yet.</div>{% endif %}</section>
+  </main>
+</div>
+{% endblock %}

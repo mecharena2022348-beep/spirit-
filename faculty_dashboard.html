@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page">
+  <div class="panel">
+    <p class="eyebrow">FACULTY PORTAL</p>
+    <h1>Faculty Dashboard</h1>
+    <p>View the classroom schedule, see who made reservations, view classrooms, and make bookings.</p>
+
+    <h2>Classroom Booking Schedule</h2>
+    <div class="table-wrap"><table>
+      <tr><th>Date</th><th>Time</th><th>Classroom</th><th>Booked By</th><th>Account / PRN</th></tr>
+      {% for b in bookings %}
+      <tr>
+        <td>{{ b['date'] }}</td><td>{{ b['start_time'] }} - {{ b['end_time'] }}</td>
+        <td>{{ b['room_name'] if 'room_name' in b.keys() else b['room'] }}</td>
+        <td>{{ b['booked_by_email'] or 'Unknown' }}</td>
+        <td>{{ b['booked_by_prn'] or b['booked_by_id'] or '-' }}</td>
+      </tr>
+      {% else %}<tr><td colspan="5">No bookings found.</td></tr>{% endfor %}
+    </table></div>
+
+    <h2>Classrooms</h2>
+    <div class="cards">
+      {% for r in rooms %}
+      <div class="card"><b>{{ r['name'] }}</b><br>{{ r['capacity'] if 'capacity' in r.keys() else '' }}</div>
+      {% else %}<p>No classrooms found.</p>{% endfor %}
+    </div>
+
+    <a class="primary-btn" href="{{ url_for('booking') }}">Make Classroom Booking →</a>
+    <a class="secondary-btn" href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+  </div>
+</div>
+{% endblock %}

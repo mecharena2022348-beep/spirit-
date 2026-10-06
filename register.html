@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="login-page">
+  <div class="hero-shade"></div>
+  <header class="brand">
+    <div class="flame">ϟ</div>
+    <div>
+      <div class="brand-name">SPIRIT</div>
+      <div class="brand-sub">UNIVERSITY</div>
+      <div class="brand-tag">KNOWLEDGE · CREATIVITY · BETTER TOMORROW</div>
+    </div>
+  </header>
+
+  <main class="login-card-wrap">
+    <section class="login-card">
+      <div class="portal-mark">SU</div>
+      <p class="eyebrow">CLASSROOM BOOKING PORTAL</p>
+      <h1>Create account</h1>
+      <p class="muted">Create your own student account. Multiple students can register and log in independently.</p>
+
+      <form method="post">
+        <label for="email">University Email</label>
+        <input class="full-input" id="email" name="email" type="email"
+               placeholder="student@spirit.edu" autocomplete="email" required>
+
+        <label for="student_id">Student ID</label>
+        <input class="full-input" id="student_id" name="student_id" type="text"
+               placeholder="Your Student ID" required>
+
+        <label for="prn">PRN</label>
+        <input class="full-input" id="prn" name="prn" type="text"
+               placeholder="Your PRN" required>
+
+        <label for="password">Password</label>
+        <input class="full-input" id="password" name="password" type="password"
+               placeholder="Minimum 8 characters" minlength="8" required>
+
+        <label for="confirm_password">Confirm Password</label>
+        <input class="full-input" id="confirm_password" name="confirm_password"
+               type="password" placeholder="Re-enter password" minlength="8" required>
+
+        <button class="primary-btn" type="submit">
+          <span>Create student account</span><span>→</span>
+        </button>
+      </form>
+
+      <div class="security-note">
+        <span>✓</span>
+        <div><b>Individual accounts</b><br>Each user gets a separate account, session, and booking history.</div>
+      </div>
+
+      <div class="support-line">
+        Already have an account?
+        <a href="{{ url_for('login') }}"><b>Sign in</b></a>
+      </div>
+    </section>
+  </main>
+  <footer class="login-footer">© 2026 Spirit University · Smart Campus Classroom Booking</footer>
+</div>
+{% endblock %}

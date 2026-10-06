@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="dashboard">
+  <nav class="topbar">
+    <div class="top-brand"><span class="top-mark">ϟ</span><span>SPIRIT UNIVERSITY</span></div>
+    <div class="top-actions"><span class="verified-pill">● Student</span><a href="{{ url_for('logout') }}">Logout</a></div>
+  </nav>
+  <main class="dash-main">
+    <section class="welcome-row">
+      <div><p class="eyebrow">SMART CAMPUS · STUDENT DASHBOARD</p><h1>Book your learning space.</h1><p class="muted">Choose a room, time, purpose and number of students. The system checks capacity automatically, including simultaneous bookings.</p></div>
+      <div class="live-badge"><span></span> Live booking system</div>
+    </section>
+    <section class="room-grid">
+      {% for room in rooms %}
+      <article class="room-card"><img src="{{ url_for('static', filename=room['image']) }}" alt="{{ room['name'] }}"><div class="room-info"><div class="room-title"><h3>{{ room['name'] }}</h3><span>{{ room['capacity'] }} seats</span></div><p>{{ room['room_type'] }}</p><button class="outline-btn book-room" data-room="{{ room['name'] }}">Book this room</button></div></article>
+      {% endfor %}
+    </section>
+    <section class="booking-panel" id="bookingPanel">
+      <div><p class="eyebrow">NEW RESERVATION</p><h2>Reserve a classroom</h2></div>
+      <form method="post" action="{{ url_for('book') }}" class="booking-form">
+        <label>Classroom<select name="room" id="roomSelect" required><option value="">Select a room</option>{% for room in rooms %}<option>{{ room['name'] }}</option>{% endfor %}</select></label>
+        <label>Purpose<input name="purpose" placeholder="Lecture, project meeting, workshop..." required></label>
+        <label>Number of students<input name="enrollment_count" type="number" min="1" max="5" value="1" required><small class="muted">Maximum 5 seats per reservation. The system will also check classroom capacity.</small></label>
+        <label>Date<input name="booking_date" type="date" required></label>
+        <label>Start<input name="start_time" type="time" required></label>
+        <label>End<input name="end_time" type="time" required></label>
+        <button class="primary-btn" type="submit">Confirm booking <span>→</span></button>
+      </form>
+    </section>
+    <section class="bookings-section"><div class="section-head"><div><p class="eyebrow">YOUR SCHEDULE</p><h2>My bookings</h2></div></div>
+      {% if bookings %}<div class="booking-list">{% for b in bookings %}<div class="booking-item"><div class="date-chip"><b>{{ b['booking_date'][8:] }}</b><small>{{ b['booking_date'][:7] }}</small></div><div class="booking-copy"><b>{{ b['room'] }}</b><span>{{ b['purpose'] }} · {{ b['start_time'] }}–{{ b['end_time'] }}</span></div><form method="post" action="{{ url_for('cancel', booking_id=b['id']) }}"><button class="cancel-btn" type="submit">Cancel</button></form></div>{% endfor %}</div>{% else %}<div class="empty-state">No bookings yet. Select a classroom above to make your first reservation.</div>{% endif %}
+    </section>
+  </main>
+</div>
+{% endblock %}

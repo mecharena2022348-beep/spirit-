@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page">
+  <div class="panel">
+    <p class="eyebrow">ADMINISTRATION</p>
+    <h1>Admin Dashboard</h1>
+    <p>Manage users, review all classroom bookings, and oversee the overall booking system.</p>
+
+    <h2>Users</h2>
+    <div class="table-wrap"><table>
+      <tr><th>Name / Email</th><th>Student ID</th><th>PRN</th><th>Role</th></tr>
+      {% for u in users %}
+      <tr><td>{{ u['email'] }}</td><td>{{ u['student_id'] }}</td><td>{{ u['prn'] }}</td><td>{{ u['role'] }}</td></tr>
+      {% endfor %}
+    </table></div>
+
+    <h2>All Classroom Bookings</h2>
+    <div class="table-wrap"><table>
+      <tr><th>Date</th><th>Time</th><th>Classroom</th><th>Account</th><th>PRN</th></tr>
+      {% for b in bookings %}
+      <tr>
+        <td>{{ b['date'] }}</td><td>{{ b['start_time'] }} - {{ b['end_time'] }}</td>
+        <td>{{ b['room_name'] if 'room_name' in b.keys() else b['room'] }}</td>
+        <td>{{ b['booked_by_email'] or 'Unknown' }}</td><td>{{ b['booked_by_prn'] or b['booked_by_id'] or '-' }}</td>
+      </tr>
+      {% else %}<tr><td colspan="5">No bookings found.</td></tr>{% endfor %}
+    </table></div>
+
+    <h2>Classrooms</h2>
+    <div class="cards">
+      {% for r in rooms %}
+      <div class="card"><b>{{ r['name'] }}</b><br>{{ r['capacity'] if 'capacity' in r.keys() else '' }}</div>
+      {% endfor %}
+    </div>
+
+    <a class="primary-btn" href="{{ url_for('dashboard') }}">Open Booking System →</a>
+  </div>
+</div>
+{% endblock %}
